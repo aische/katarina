@@ -1,0 +1,1 @@
+{"list1":{"head":25,"constr":"Cons","tail":{"head":38,"constr":"Cons","tail":{"constr":"Nil"}}},"constr":"Foo","list2":{"head":18,"constr":"Cons","tail":{"head":65,"constr":"Cons","tail":{"head":9,"constr":"Cons","tail":{"head":6,"constr":"Cons","tail":{"head":30,"constr":"Cons","tail":{"head":71,"constr":"Cons","tail":{"constr":"Nil"}}}}}}},"info":"hello"}

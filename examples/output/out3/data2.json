@@ -1,0 +1,70 @@
+{
+  "m": {
+    "y": {
+      "constr": "Num",
+      "v": 5
+    },
+    "x": {
+      "x": {
+        "constr": "Num",
+        "v": 15
+      },
+      "y": {
+        "y": {
+          "constr": "Num",
+          "v": 2
+        },
+        "x": {
+          "x": {
+            "x": {
+              "constr": "Num",
+              "v": 15
+            },
+            "y": {
+              "y": {
+                "constr": "Num",
+                "v": 2
+              },
+              "x": {
+                "x": {
+                  "constr": "Num",
+                  "v": 15
+                },
+                "y": {
+                  "y": {
+                    "constr": "Num",
+                    "v": 2
+                  },
+                  "x": {
+                    "constr": "Num",
+                    "v": 9
+                  },
+                  "constr": "Sub"
+                },
+                "constr": "Sub"
+              },
+              "constr": "Sub"
+            },
+            "constr": "Sub"
+          },
+          "y": {
+            "y": {
+              "constr": "Num",
+              "v": 2
+            },
+            "x": {
+              "constr": "Num",
+              "v": 9
+            },
+            "constr": "Sub"
+          },
+          "constr": "Sub"
+        },
+        "constr": "Sub"
+      },
+      "constr": "Sub"
+    },
+    "constr": "Mul"
+  },
+  "constr": "Tree"
+}

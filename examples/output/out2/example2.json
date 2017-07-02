@@ -1,0 +1,166 @@
+{   "constr":"Project"
+,   "name":"blah"
+,   "attributes":
+    [   {"aid":1,"constr":"Attribute","name":"Länge","type":"INT"}
+    ,   {"aid":2,"constr":"Attribute","name":"Breite","type":"INT"}
+    ,   {"aid":3,"constr":"Attribute","name":"Mehrfarbig","type":"BOOL"}
+    ,   {"aid":4,"constr":"Attribute","name":"Gesund","type":"BOOL"}
+    ,   {"aid":5,"constr":"Attribute","name":"Nährwert","type":"INT"}
+    ,   {"aid":6,"constr":"Attribute","name":"Gewicht","type":"INT"}
+    ]
+,   "testclasses":
+    [   {   "constr":"Testclass"
+        ,   "tid":1
+        ,   "name":"djadhsakdaskld"
+        ,   "weights":
+            [   {"aid":1,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":2,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":3,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":4,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":5,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":6,"weight":1.0,"constr":"ANode"}
+            ]   
+        ,   "nodes":
+            [   {   "nodes":
+                    [   {   "nodes":
+                            [   {"aid":1,"weight":0.0,"constr":"ANode"}
+                            ,   {"aid":2,"weight":0.0,"constr":"ANode"}
+                            ]
+                        ,   "weight":0.0
+                        ,   "constr":"RNode"
+                        ,   "name":"hello"
+                        }
+                    ,   {"aid":3,"weight":0.0,"constr":"ANode"}
+                    ]
+                ,   "weight":0.0
+                ,   "constr":"RNode"
+                ,   "name":"djadhsakdaskld"
+                }
+            ,   {   "nodes":
+                    [   {"aid":6,"weight":0.0,"constr":"ANode"}
+                    ]
+                ,   "weight":0.0
+                ,   "constr":"RNode"
+                ,   "name":"djadhsakdaskld"
+                }
+            ,   {"aid":4,"weight":0.0,"constr":"ANode"}
+            ,   {"aid":5,"weight":0.0,"constr":"ANode"}
+            ]
+        }
+    ,   {   "constr":"Testclass"
+        ,   "tid":2
+        ,   "name":"djadhsakdaskld"
+        ,   "weights":
+            [   {"aid":1,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":2,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":3,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":4,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":5,"weight":1.0,"constr":"ANode"}
+            ,   {"aid":6,"weight":1.0,"constr":"ANode"}
+            ]   
+        ,   "nodes":
+            [   {   "nodes":
+                    [   {"aid":3,"weight":0.0,"constr":"ANode"}
+                    ]
+                ,   "weight":0.0
+                ,   "constr":"RNode"
+                ,   "name":"djadhsakdaskld"
+                }
+            ,   {   "nodes":
+                    [   {   "nodes":
+                            [   {"aid":1,"weight":0.0,"constr":"ANode"}
+                            ,   {"aid":2,"weight":0.0,"constr":"ANode"}
+                            ]
+                        ,   "weight":0.0
+                        ,   "constr":"RNode"
+                        ,   "name":"hello"
+                        }
+                    ,   {"aid":4,"weight":0.0,"constr":"ANode"}
+                    ,   {"aid":6,"weight":0.0,"constr":"ANode"}
+                    ]
+                ,   "weight":0.0
+                ,   "constr":"RNode"
+                ,   "name":"djadhsakdaskld"
+                }
+            ,   {"aid":5,"weight":0.0,"constr":"ANode"}
+            ]
+        }
+    ]
+,   "products":
+    [   {   "constr":"Product"
+        ,   "name":"Apfel"
+        ,   "pid":1
+        ,   "values":
+            [   {"aid":1,"constr":"Value","value":"1"}
+            ,   {"aid":2,"constr":"Value","value":"1"}
+            ,   {"aid":3,"constr":"Value","value":"true"}
+            ,   {"aid":4,"constr":"Value","value":"false"}
+            ,   {"aid":5,"constr":"Value","value":"100"}
+            ,   {"aid":6,"constr":"Value","value":"200"}
+            ]
+        }
+    ,   {   "constr":"Product"
+        ,   "name":"Birne"
+        ,   "pid":2
+        ,   "values":
+            [   {"aid":1,"constr":"Value","value":"10"}
+            ,   {"aid":5,"constr":"Value","value":"101"}
+            ,   {"aid":6,"constr":"Value","value":"202"}
+            ,   {"aid":2,"constr":"Value","value":"2"}
+            ,   {"aid":3,"constr":"Value","value":"false"}
+            ,   {"aid":4,"constr":"Value","value":"false"}
+            ]
+        }
+    ,   {   "constr":"Product"
+        ,   "name":"Karotte"
+        ,   "pid":3
+        ,   "values":
+            [   {"aid":1,"constr":"Value","value":"3"}
+            ,   {"aid":2,"constr":"Value","value":"7"}
+            ,   {"aid":3,"constr":"Value","value":"false"}
+            ,   {"aid":4,"constr":"Value","value":"true"}
+            ,   {"aid":5,"constr":"Value","value":"130"}
+            ,   {"aid":6,"constr":"Value","value":"120"}
+            ]
+        }
+    ,   {   "constr":"Product"
+        ,   "name":"Birne"
+        ,   "pid":4
+        ,   "values":
+            [   {"aid":1,"constr":"Value","value":"21"}
+            ,   {"aid":2,"constr":"Value","value":"22"}
+            ,   {"aid":3,"constr":"Value","value":"true"}
+            ,   {"aid":4,"constr":"Value","value":"false"}
+            ,   {"aid":5,"constr":"Value","value":"300"}
+            ,   {"aid":6,"constr":"Value","value":"223"}
+            ]
+        }
+    ,   {   "constr":"Product"
+        ,   "name":"Kartoffel"
+        ,   "pid":5
+        ,   "values":
+            [   {"aid":1,"constr":"Value","value":"31"}
+            ,   {"aid":2,"constr":"Value","value":"12"}
+            ,   {"aid":3,"constr":"Value","value":"true"}
+            ,   {"aid":4,"constr":"Value","value":"false"}
+            ,   {"aid":5,"constr":"Value","value":"100"}
+            ,   {"aid":6,"constr":"Value","value":"200"}
+            ]
+        }
+    ]
+,   "bla":
+    [   [   27
+        ,   "blah"
+        ,   [   {"aid":1,"constr":"Attribute","name":"Länge","type":"INT"}
+            ,   {"aid":2,"constr":"Attribute","name":"Breite","type":"INT"}
+            ,   {"aid":5,"constr":"Attribute","name":"Alter","type":"INT"}
+            ,   {"aid":6,"constr":"Attribute","name":"Anzahl Foo","type":"INT"}
+            ,   {"aid":3,"constr":"Attribute","name":"Mehrfarbig","type":"BOOL"}
+            ,   {"aid":4,"constr":"Attribute","name":"XXX","type":"BOOL"}
+            ]
+        ,   {"min":85,"constr":"Range","max":38}
+        ]
+    ]
+,   "id":1
+}
+
