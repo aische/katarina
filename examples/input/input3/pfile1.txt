@@ -1,0 +1,57 @@
+
+algebra I1 :: M {
+
+    Add (x, y) {
+        return x+y;
+    }
+
+    Mul (x, y) {
+        return x*y;    
+    }
+
+    Sub (x, y) {
+        return x-y;    
+    }
+
+    Div (x, y) {
+        return x/y;    
+    }
+
+    Num (v) {
+        return v;
+    }
+
+    Tree (m) {
+    	return m;
+    }
+}
+
+
+algebra I2 :: M {
+
+    Add (x, y) {
+        return concat ("<span style=\"color:blue;\">(", x, " + ", y, ")</span>");
+    }
+
+    Mul (x, y) {
+        return concat ("<span style=\"color:green;\">(", x, " * ", y, ")</span>");
+    }
+
+    Sub (x, y) {
+        return concat ("<span style=\"color:red;\">(", x, " - ", y, ")</span>");
+    }
+
+    Div (x, y) {
+        return concat ("<span style=\"color:magenta;\">(", x, " / ", y, ")</span>");
+    }
+
+    Num (v) {
+        return concat ("<span style=\"color:gray;\">", v, "</span>");
+    }
+
+    Tree (m) {
+        return m;
+    }
+}
+
+

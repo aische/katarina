@@ -1,0 +1,18 @@
+data Listexample {
+
+    list = Nil | Cons;
+
+    Nil {}
+
+    Cons { 
+        head  :: Int;
+        tail  :: list;
+    }  
+
+    Foo {
+        list1 :: list;
+        list2 :: list;
+        info :: String;
+    }  
+}
+

@@ -1,0 +1,86 @@
+algebra Length :: Listexample {
+
+    Nil () {
+        return 0;
+    }
+
+    Cons (head, tail) {
+        return 1 + tail;
+    }
+
+    Foo (list1, list2, info) {
+        return list1 + list2;
+    }
+}
+
+
+algebra Summe :: Listexample {
+
+    Nil () {
+        return 0;
+    }
+
+    Cons (head, tail) {
+        return head + tail;
+    }
+
+    Foo (list1, list2, info) {
+        return list1 + list2;
+    }
+}
+
+algebra Text :: Listexample {
+
+    Nil () {
+        return "[]";
+    }
+
+    Cons (head, tail) {
+        return concat(head, " : ", tail);
+    }
+
+    Foo (list1, list2, info) {
+        return concat(list1, ", ",list2);
+    }
+}
+
+algebra Text2 :: Listexample {
+
+    Nil () {
+        return [];
+    }
+
+    Cons (head, tail) {
+        return append([head], tail);
+    }
+
+    Foo (list1, list2, info) {
+        return concat("[", implode(", ", list1), "], [", implode(", ", list2), "]", " ", info);
+    }
+}
+
+functor OneList :: Listexample {
+
+    Nil ()
+
+    Cons (head, tail)
+
+    Foo (list1)
+
+}
+
+algebra Summe2 :: OneList {
+
+    Nil () {
+        return 0;
+    }
+
+    Cons (head, tail) {
+        return head + tail;
+    }
+
+    Foo (list1) {
+        return list1;
+    }
+
+}

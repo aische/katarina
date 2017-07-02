@@ -1,0 +1,350 @@
+
+# simple view
+algebra I1 :: A1 {
+
+    Product (pid, name, values ) { return ?>
+        <li>
+            <span style="color:black;">Product <?name?>[pid=<? pid ?>]:</span>
+            <ul><? implode("", values) ?></ul>
+        </li><?; 
+    }
+
+    Attribute (aid, name, type ) { 
+        return ?><li><span style="color:black;">Attr <?name?>[aid=<?aid?>]::<?type?></span></li><?;
+    }
+
+    Value ( aid, value) { 
+        return ?><li><span style="color:black;">Value[aid=<?aid?>] = <?value?></span></li><?;
+    }
+
+    Project (id, name, attributes, products, bla ) {
+        return concat
+            ( id
+            , ": <span style=\"color:black;\">"
+            , name
+            , "</span><ul>"
+            , implode("",attributes)
+            , "</ul>"
+            , "<ul>"
+            , implode("",products)
+            , "</ul>"
+            , implode("", bla[0][2])
+            );
+    }
+    Range (min, max) { return ""; }
+}
+
+
+# extended view
+algebra I2 :: Foo {
+
+    Product (pid, name, values) {
+        return concat
+            ( "<li><span style=\"color:green;\">"
+            , pid
+            , ": "
+            , name
+            , "</span><ul>"
+            , implode("", values)
+            , "</ul>"
+            , "</li>"
+            );
+    }
+
+    Attribute (aid, name, type ) {
+        return concat("<li>", "<span style=\"color:blue;\">", aid, ": ", name, "(", type, ")", "</span></li>");
+    }
+
+    Value ( aid, value) {
+        return concat("<li>", "<span style=\"color:red;\">", aid, ": ", value, "</span></li>");
+    }
+
+    Project (id, name, attributes, products, testclasses, bla) {
+        return concat
+            ( "<li>"
+            , "<span style=\"color:#ff00ff;\">"
+            , id
+            , name
+            , "</span><ul>"
+            , implode("",attributes)
+            , "</ul>"
+            , "<ul>"
+            , implode("",products)
+            , "</ul>"
+            , "<ul>"
+            , implode("",testclasses)
+            , "</ul>"
+            , "</li>"
+            );
+    }
+
+    ANode (aid, weight) {
+        return concat("<li>", "<span style=\"color:#00ffff;\">", aid, ": ", weight, "</span></li>");
+    }
+    RNode (name, weight, nodes) {
+        return concat
+            ( "<li>"
+            , "<span style=\"color:#00aa77;\">"
+            , name
+            , ": "
+            , weight
+            , "</span><ul>"
+            , implode("",nodes)
+            , "</ul>"
+            , "</li>"
+            );
+    }
+
+    SavedSearch (sid, values) { 
+        return concat
+            ( "<li>"
+            , "<span style=\"color:#aa0077;\">"
+            , sid
+            , "</span><ul>"
+            , implode("",values)
+            , "</ul>"
+            , "</li>"
+            );
+    }
+
+    Filter (aid, predicate) {
+        return concat
+            ( "<li>"
+            , "<span style=\"color:#aaff00;\">"
+            , aid
+            , "</span>"
+            , predicate
+            , "</li>"
+            );
+    }
+
+    Range (min, max) {
+        return concat("[", min, "-", max, "]");
+    }
+
+    Elems (values) { 
+        return "";
+    }
+    Testclass (tid, name, nodes, weights) { 
+        return concat
+            ( "<li>"
+            , "<span style=\"color:#ffff00;\">"
+            , tid
+            , ": "
+            , name
+            , "</span><ul>"
+            , implode("",nodes)
+            , "</ul>"
+            , "weights:"
+            , "<ul>"
+            , implode("",weights)
+            , "</ul>"
+            , "</li>"
+            );
+    }
+
+    Filterset (fsid, name, widgets) {
+        return concat 
+            ( "<li>"
+            , "<span style=\"color:#22aaff;\">"
+            , fsid
+            , ": "
+            , name
+            , "</span><ul>"
+            , implode("",widgets)
+            , "</ul>"
+            , "</li>"
+            );
+    }
+
+    RangeSlider (min, max, value1, value2) {
+    }
+
+    Widget (aid, widget, info) {
+    }
+
+}
+
+
+# editor view
+
+algebra I3 :: A1 {
+
+    Product (pid, name, values) { return ?>
+        <li> 
+            (<? pid ?>):
+            <span class="edit" 
+                  style="color:green;"
+                  data-pid="<?pid?>"
+                  data-typ="Product.name"
+                  ><? name ?></span>
+            <ul><? implode("", values) ?></ul>
+        </li><?; 
+    }
+
+    Attribute (aid, name, type ) { return ?>
+        <li> 
+            (<?aid?>):
+            <span class="edit" 
+                  style="color:blue;"
+                  data-aid="<?aid?>"
+                  data-typ="Attribute.name"
+                  ><?name?></span> ::
+            <span class="edit" 
+                  style="color:magenta;"
+                  data-aid="<?aid?>"
+                  data-typ="Attribute.type"
+                  ><?type?></span>
+        </li> <?;
+    }
+
+    Value ( aid, value) {
+        return ?>
+        <li> 
+            
+            <? this.attrs[aid].name ?> =
+            <span class="edit" 
+                  style="color:red;"
+                  data-aid="<?aid?>"
+                  data-pid="<?this.path[0].pid?>"
+                  data-typ="Value"
+            ><?value?></span>
+        </li><?;
+    }
+
+    Project (id, name, attributes, products , bla) {
+        return ?>
+            Project(<?id?>):
+            <span class="edit" 
+                  style="color:red;"
+                  data-id="<?id?>"
+                  data-typ="Project.name"
+            ><?name?></span>
+            <br>Attributes:
+            <ul><? implode("",attributes) ?></ul>
+            Products:
+            <ul><? implode("",products) ?></ul>
+            <?;
+    }
+    Range (min, max) { return ""; }
+}
+
+
+functor A2 :: Foo {
+    
+    Testclass (tid, name, nodes)
+
+    ANode (aid, weight)
+
+    RNode (name, weight, nodes)
+
+}
+
+algebra I5 :: A2 {
+    
+    Testclass (tid, name, nodes) { return ?>
+        Testclass(<?tid?>):
+        <span class="edit" 
+              style="color:magenta;"
+              data-tid="<?tid?>"
+              data-typ="Testclass.name"
+            ><?name?></span>:
+        <ul><? implode("",nodes) ?></ul><?;
+    }
+
+    ANode (aid, weight) { return ?>
+        <li><span style="color:#008888;"><?aid?>: <?weight?></span>
+        </li><?;
+    }
+
+    RNode (name, weight, nodes) { return ?>
+        <li><span style="color:#009900;"><?name?>: <?weight?></span>
+        <ul>
+        <? implode("",nodes) ?>
+        </ul>
+        </li><?;
+    }
+}
+
+functor A3 :: Foo {
+    
+    Project (testclasses)
+
+    Testclass (tid, name)
+
+}
+
+algebra ShowTestclasses :: A3 {
+    
+    Project (testclasses) {
+        return implode("<br>", testclasses);
+    }
+
+    Testclass (tid, name) { return ?>
+        <a href="javascript: showTestclass(<?tid?>)"><?name?></a><?;
+    }
+
+}
+
+algebra I3Table :: A1 {
+
+    Product (pid, name, values) { return ?>
+        <tr>
+            <td>
+                <? pid ?>
+            </td>
+            <td>
+                <span class="edit" 
+                      style="color:green;"
+                      data-pid="<?pid?>"
+                      data-typ="Product.name"
+                      ><? name ?></span>
+            </td>
+            <? implode("", values) ?>
+        </tr><?; 
+    }
+
+    Attribute (aid, name, type ) { return [ ?>
+        <td> 
+            (<?aid?>)
+        </td> 
+        <? , ?>
+        <td> 
+            <span class="edit" 
+                  style="color:blue;"
+                  data-aid="<? aid ?>"
+                  data-typ="Attribute.name"
+            ><?name?></span>
+        </td> 
+        <? , ?>
+        <td> 
+            <span class="edit" 
+                  style="color:magenta;"
+                  data-aid="<? aid ?>"
+                  data-typ="Attribute.type"
+                  ><?type?></span>
+        </td><? ];
+    }
+
+    Value ( aid, value) {
+        return ?>
+        <td><span class="edit" 
+                  style="color:red;"
+                  data-aid="<? aid ?>"
+                  data-pid="<? this.path[0].pid ?>"
+                  data-typ="Value"
+            ><?value?></span>
+        </td><?;
+    }
+
+    Project (id, name, attributes, products , bla) {
+        return ?>
+            <table>
+                <tr><td></td><td></td><? implode("", map( \(x){return x[0];},attributes)) ?></tr>
+                <tr><td></td><td></td><? implode("", map( \(x){return x[1];},attributes)) ?></tr>
+                <tr><td></td><td></td><? implode("", map( \(x){return x[2];},attributes)) ?></tr>
+                <? implode("", products) ?>
+            </table><?;
+    }
+    Range (min, max) { return ""; }
+}

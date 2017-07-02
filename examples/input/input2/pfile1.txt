@@ -1,0 +1,15 @@
+
+functor A1 :: Foo {
+    
+
+    # in values sind nur diejenigen, deren AIDs in foo vorkommen.
+    Product (pid, name, values <- foo)
+    
+    Attribute (aid, name, type)
+
+    Value (aid, value)
+
+    Project (id, name, attributes <- foo, products, bla <- [[_ , _ , foo , _]])
+
+    Range (min, max)
+}

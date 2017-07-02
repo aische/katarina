@@ -1,0 +1,89 @@
+data Foo {
+
+    Product { 
+        pid    :: Int;
+        name   :: String;
+        values :: [ aid => Value ];         # eine Map von aid nach Value 
+    }
+
+    Attribute { 
+        aid   :: Int;
+        name  :: String; 
+        type  :: String;
+    }
+
+    Value { 
+        aid   :: Int; 
+        value :: String = "Hello World";
+    }
+
+    node = ANode | RNode;
+
+    ANode { 
+        aid    :: Int; 
+        weight :: Float = 0.5;
+    }
+
+    RNode { 
+        name   :: String; 
+        weight :: Float; 
+        nodes  :: [ node ];
+    }
+
+    Testclass { 
+        tid     :: Int;
+        name    :: String;
+        nodes   :: [ node ];
+        weights :: [ aid => ANode ];
+    }
+
+    Project {
+        id          :: Int;
+        name        :: String = "foobaz \"haha\"!";
+        attributes  :: [aid => Attribute];
+        products    :: [pid => Product];
+        testclasses :: [tid => Testclass];
+        bla         :: [[Int,String, [aid => Attribute] ,Range]] = [];
+    }
+
+    SavedSearch { 
+        sid    :: Int;
+        values :: [aid => Filter];
+    }
+
+    Filter {
+        aid       :: Int;
+        predicate :: Range | Elems;
+    }
+
+    Range {
+        min :: Int;
+        max :: Int;
+    }
+
+    Elems { 
+        values :: [String];
+    }
+
+    widget = RangeSlider | Range;
+
+    Filterset {
+        fsid    :: Int;
+        name    :: String;
+        widgets :: [aid => Widget];
+    }
+
+    Widget {
+        aid    :: Int;
+        widget :: widget;
+        info   :: String;
+    }
+
+    RangeSlider {
+        min    :: Int;
+        max    :: Int;
+        value1 :: Int;
+        value2 :: Int;
+    }
+}
+

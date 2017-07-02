@@ -1,0 +1,25 @@
+data M {
+    m = Add | Mul | Sub | Div | Num;
+    Add {
+        x :: m;
+        y :: m;
+    }
+    Mul {
+        x :: m;
+        y :: m;
+    }
+    Div {
+        x :: m;
+        y :: m;
+    }
+    Sub {
+        x :: m;
+        y :: m;
+    }
+    Num 
+    { v :: Int;
+    }
+    Tree
+    { m :: m;
+    }
+}
