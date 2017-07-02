@@ -4,23 +4,23 @@ katarina is a proof on concept catamorphism compiler. It takes some definitions 
 
 #### Usage
 
-	> stack build
-	
-	> cd examples
+    > stack build
+    
+    > cd examples
 
-	> ../.stack-work/install/x86_64-osx/lts-8.13/8.0.2/bin/katarina input/input1/ifile1.txt input/input1/pfile1.txt -f input/input1/assets -o output/out1
-	
-	> php -S localhost:8080
+    > ../.stack-work/install/x86_64-osx/lts-8.13/8.0.2/bin/katarina input/input1/ifile1.txt input/input1/pfile1.txt -f input/input1/assets -o output/out1
+    
+    > php -S localhost:8080
 
 (Path to executable might be different). Now open the examples in your browser:
 
-	http://localhost:8080/output/out1/index.php
-	http://localhost:8080/output/out2/index.php
+    http://localhost:8080/output/out1/index.php
+    http://localhost:8080/output/out2/index.php
 
 When katarina is on the path, it can be used like this:
 
-	katarina DATA ALG1 ALG2 ... -f ASSETS_PATH -o PATH
-	
+    katarina DATA ALG1 ALG2 ... -f ASSETS_PATH -o PATH
+    
 where
 
 - DATA is the file with the datatype definition
@@ -33,23 +33,23 @@ where
 
 Datatype definition: A set of (possibly mutual recursive) objects:
 
-	data Listexample {
+    data Listexample {
 
-    	list = Nil | Cons;
+        list = Nil | Cons;
 
-	    Nil {}
+        Nil {}
 
-    	Cons { 
-        	head  :: Int;
-	        tail  :: list;
-    	}  
+        Cons { 
+            head  :: Int;
+            tail  :: list;
+        }  
 
-	    Foo {
-    	    list1 :: list;
-        	list2 :: list;
-	        info :: String;
-    	}  
-	}
+        Foo {
+            list1 :: list;
+            list2 :: list;
+            info :: String;
+        }  
+    }
 
 Algebra definitions for the datatype "Listexample":
 
@@ -143,86 +143,86 @@ Algebra for the functor "OneList":
 
 A PHP program can use the compiled code like this:
 
-	<!doctype html>
-	<html>
-	<head>
-	<meta charset="UTF-8" />
-	</head>
-	<body>
-	<?php
-		include("php/prelude.php");
-		include("php/Listexample.php");
-		include("php/Listexample_UL.php");
-		include("php/Listexample_TREE.php");
-		include("php/Listexample_Length.php");
-		include("php/Listexample_Summe.php");
-		include("php/Listexample_Text.php");
-		include("php/Listexample_Text2.php");
-		include("php/F_OneList.php");
-		include("php/OneList_Summe2.php");	
+    <!doctype html>
+    <html>
+    <head>
+    <meta charset="UTF-8" />
+    </head>
+    <body>
+    <?php
+        include("php/prelude.php");
+        include("php/Listexample.php");
+        include("php/Listexample_UL.php");
+        include("php/Listexample_TREE.php");
+        include("php/Listexample_Length.php");
+        include("php/Listexample_Summe.php");
+        include("php/Listexample_Text.php");
+        include("php/Listexample_Text2.php");
+        include("php/F_OneList.php");
+        include("php/OneList_Summe2.php");  
 
-		$json = json_decode(file_get_contents("data.json"), true);
-		$foo = Foo::fromJSON($json);
-		echo "<h3>rendered with PHP:</h3>";
-		echo $foo->fold(new Listexample_UL());
-		$a1 = new Listexample_Length ();
-		$a2 = new Listexample_Summe ();
-		$a3 = new OneList_Summe2 ();
-		$a4 = new Listexample_Text ();
-		$a5 = new Listexample_Text2 ();
-		echo "length: " . $foo->fold($a1);
-		echo "<br>";
-		echo "sum: " . $foo->fold($a2);
-		echo "<br>";
-		echo "text: " . $foo->fold($a4);
-		echo "<br>";
-		echo "text2: " . $foo->fold($a5);
-		echo "<br>";
-		echo "sum (OneList): " . $foo->fold($a3);
-		echo "<br>";
-	?>
-	<script type="text/javascript" src="js/prelude.js"></script>
-	<script type="text/javascript" src="js/Listexample.js"></script>
-	<script type="text/javascript" src="js/Listexample_UL.js"></script>
-	<script type="text/javascript" src="js/Listexample_TREE.js"></script>
-	<script type="text/javascript" src="js/Listexample_Length.js"></script>
-	<script type="text/javascript" src="js/Listexample_Summe.js"></script>
-	<script type="text/javascript" src="js/Listexample_Text.js"></script>
-	<script type="text/javascript" src="js/Listexample_Text2.js"></script>
-	<script type="text/javascript" src="js/F_OneList.js"></script>
-	<script type="text/javascript" src="js/OneList_Summe2.js"></script>
-	<script type="text/javascript">
-		var foo = Foo.fromJSON(JSON.parse('<?= json_encode($foo->toJSON()) ?>'));
-		function doRender(){
-			document.querySelector("#foo1").innerHTML = 
-				foo.fold (new Listexample_UL());
-			document.querySelector("#foo1_length").innerHTML = 
-				"length: " + foo.fold (new Listexample_Length());
-			document.querySelector("#foo1_sum").innerHTML = 
-				"sum: " + foo.fold (new Listexample_Summe());
-			document.querySelector("#foo1_text").innerHTML = 
-				"text: " + foo.fold (new Listexample_Text());
-			document.querySelector("#foo1_text2").innerHTML = 
-				"text2: " + foo.fold (new Listexample_Text2());
-			document.querySelector("#foo1_sum2").innerHTML = 
-				"sum (OneList): " + foo.fold (new OneList_Summe2());
-		}
-	</script>
-	<h3 onclick="doRender()">rendered with javascript: (click me)</h3>
-	<div id="foo1"></div>
-	<div id="foo1_length"></div>
-	<div id="foo1_sum"></div>
-	<div id="foo1_text"></div>
-	<div id="foo1_text2"></div>
-	<div id="foo1_sum2"></div>
-	</body>
-	</html>
-	
+        $json = json_decode(file_get_contents("data.json"), true);
+        $foo = Foo::fromJSON($json);
+        echo "<h3>rendered with PHP:</h3>";
+        echo $foo->fold(new Listexample_UL());
+        $a1 = new Listexample_Length ();
+        $a2 = new Listexample_Summe ();
+        $a3 = new OneList_Summe2 ();
+        $a4 = new Listexample_Text ();
+        $a5 = new Listexample_Text2 ();
+        echo "length: " . $foo->fold($a1);
+        echo "<br>";
+        echo "sum: " . $foo->fold($a2);
+        echo "<br>";
+        echo "text: " . $foo->fold($a4);
+        echo "<br>";
+        echo "text2: " . $foo->fold($a5);
+        echo "<br>";
+        echo "sum (OneList): " . $foo->fold($a3);
+        echo "<br>";
+    ?>
+    <script type="text/javascript" src="js/prelude.js"></script>
+    <script type="text/javascript" src="js/Listexample.js"></script>
+    <script type="text/javascript" src="js/Listexample_UL.js"></script>
+    <script type="text/javascript" src="js/Listexample_TREE.js"></script>
+    <script type="text/javascript" src="js/Listexample_Length.js"></script>
+    <script type="text/javascript" src="js/Listexample_Summe.js"></script>
+    <script type="text/javascript" src="js/Listexample_Text.js"></script>
+    <script type="text/javascript" src="js/Listexample_Text2.js"></script>
+    <script type="text/javascript" src="js/F_OneList.js"></script>
+    <script type="text/javascript" src="js/OneList_Summe2.js"></script>
+    <script type="text/javascript">
+        var foo = Foo.fromJSON(JSON.parse('<?= json_encode($foo->toJSON()) ?>'));
+        function doRender(){
+            document.querySelector("#foo1").innerHTML = 
+                foo.fold (new Listexample_UL());
+            document.querySelector("#foo1_length").innerHTML = 
+                "length: " + foo.fold (new Listexample_Length());
+            document.querySelector("#foo1_sum").innerHTML = 
+                "sum: " + foo.fold (new Listexample_Summe());
+            document.querySelector("#foo1_text").innerHTML = 
+                "text: " + foo.fold (new Listexample_Text());
+            document.querySelector("#foo1_text2").innerHTML = 
+                "text2: " + foo.fold (new Listexample_Text2());
+            document.querySelector("#foo1_sum2").innerHTML = 
+                "sum (OneList): " + foo.fold (new OneList_Summe2());
+        }
+    </script>
+    <h3 onclick="doRender()">rendered with javascript: (click me)</h3>
+    <div id="foo1"></div>
+    <div id="foo1_length"></div>
+    <div id="foo1_sum"></div>
+    <div id="foo1_text"></div>
+    <div id="foo1_text2"></div>
+    <div id="foo1_sum2"></div>
+    </body>
+    </html>
+    
 Two generic algebras are always generated: Rendering of the datastructure as UL/LI-list, and a catamorphism that maps the datatstrucure to a tree of nested arrays. 
 
 The HTML page will look like this in the browser:
 
-	rendered with PHP:
+    rendered with PHP:
     
     Foo
         list1 :: Nil | Cons = Cons
@@ -288,18 +288,18 @@ When the fold method of an object class XXX is called, it calls the fmapXXX func
 
 For example:
 
-	foo.fold(algebra)
+    foo.fold(algebra)
 
-	-->
+    -->
 
-	return algebra.fmapFoo(foo)
+    return algebra.fmapFoo(foo)
 
-	-->
+    -->
 
-	arg1 = foo.arg1                 // primitive type
-	arg2 = foo.arg2.fold(algebra)   // non-primitive type, recursive call
-	...
-	return algebra.foldFoo(arg1, arg2, ..)  // call user code with evaluated arguments
+    arg1 = foo.arg1                 // primitive type
+    arg2 = foo.arg2.fold(algebra)   // non-primitive type, recursive call
+    ...
+    return algebra.foldFoo(arg1, arg2, ..)  // call user code with evaluated arguments
 
 #### Property-types, Maps and keyorders
 
@@ -318,15 +318,15 @@ There is a difficulty with the order of the elements when folding a Map. In PHP,
 
 The definition of the keyorder takes place in the functor and will be used by the algebras that extend the functor. When defining a functor, telling the compiler which keyorder property should be used for a Map looks like this:
 
-	functor F1 :: MyDataType {
-		
-		Bla (info, my_map_property <- foo, more_stuff)
-	}
+    functor F1 :: MyDataType {
+        
+        Bla (info, my_map_property <- foo, more_stuff)
+    }
 
 Here the property 'my_map_property' is of type Map, and it should use the keyorder called 'foo'. The keyorder propertiy has to be set explicitly by the user in the program that uses the compiled files, like here for the algebra Alg:
 
-	$i1 = new F1_Alg ();
-	$i1->keyorder["foo"] = [1,2,5,3,11];
+    $i1 = new F1_Alg ();
+    $i1->keyorder["foo"] = [1,2,5,3,11];
 
 #### Status of the project
 
